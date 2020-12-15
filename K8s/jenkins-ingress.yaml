@@ -1,27 +1,21 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: jenkins-website
+  name: jenkins-ingress
+  #namespace: logos
   annotations:
-    kubernetes.io/ingress.class: "traefik"
-#    certmanager.k8s.io/issuer: "letsencrypt-prod"
-#    certmanager.k8s.io/acme-challenge-type: http01
-
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
- # tls:
- # - hosts:
-    # Change this to your own hostname
- #   - k3s-cluster.eastus2.cloudapp.azure.com
- #   secretName: jenkins-website
+  tls:
+    - secretName: rancher-logo-k3s-ruan-dev-tls
+      hosts:
+        - k3s-cluster.eastus2.cloudapp.azure.com
   rules:
-  # Change this to your own hostname
   - host: k3s-cluster.eastus2.cloudapp.azure.com
     http:
       paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: jenkins-service
-            port:
-              number: 8080
+        - path: /
+          backend:
+            serviceName: jenkins-service
+            servicePort: 8080
