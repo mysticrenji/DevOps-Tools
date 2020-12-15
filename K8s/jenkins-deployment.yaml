@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: jenkins/jenkins:lts
+        image: mysticrenji/jenkins-lts:latest
+        env:
+          - name: JAVA_OPTS
+            value: -Djenkins.install.runSetupWizard=false
         ports:
           - name: http-port
             containerPort: 8080
