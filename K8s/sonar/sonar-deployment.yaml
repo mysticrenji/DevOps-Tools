@@ -4,6 +4,7 @@ metadata:
   labels:
     app: sonarqube
   name: sonarqube
+  namespace: sonar
 spec:
   replicas: 1
   selector:
@@ -43,7 +44,7 @@ spec:
       volumes:
       - name: sonar-data
         persistentVolumeClaim:
-          claimName: sonar-data
+          claimName: sonar-data-claim
       - name: sonar-extensions
         persistentVolumeClaim:
-          claimName: sonar-extensions
+          claimName: sonar-extensions-claim
