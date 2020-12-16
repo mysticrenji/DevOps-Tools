@@ -11,13 +11,13 @@ spec:
         name: sonar-postgres
     spec:
       containers:
-        - image: postgres:9.6.5
+        - image: postgres:12.5
           name: sonar-postgres
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-pwd
+                  name: sonar-db-cred
                   key: password
             - name: POSTGRES_USER
               value: sonar
