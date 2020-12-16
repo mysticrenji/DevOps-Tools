@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  password: VGVzdGluZzEyMw==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: sonar-db-cred

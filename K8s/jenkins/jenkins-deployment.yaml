@@ -28,6 +28,8 @@ spec:
             mountPath: /var/jenkins_vol
       volumes:
         - name: jenkins-vol
-          hostPath:
-            path: /home/ubuntu/jenkins/data
-            type: Directory
+          persistentVolumeClaim:
+            claimName: jenkins-volume-claim
+          #hostPath:
+          #  path: /home/ubuntu/jenkins/data
+          #  type: Directory

@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-volume
+  labels:
+    app: jenkins
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /home/ubuntu/jenkins/data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+  storageClassName: manual
+  selector:
+    matchLabels:
+      app: jenkins
