@@ -4,6 +4,9 @@ metadata:
   name: sonar-postgres
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: sonar-postgres
   template:
     metadata:
       name: sonar-postgres
