@@ -23,7 +23,7 @@ services:
       - sonar_extensions:/opt/sonarqube/extensions
 
   db:
-    image: postgres:12.22
+    image: postgres:17.6
     container_name: sonarqube-pg
     hostname: sonarqube-pg
     networks:
